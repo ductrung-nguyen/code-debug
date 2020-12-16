@@ -1,12 +1,21 @@
 # Debug
 
+This plugin is inspired from [](https://github.com/WebFreak001/code-debug)
+
 Native VSCode debugger. Supports both GDB and LLDB.
 
 ## Installation
 
-Press ctrl-p (cmd+p on OS X) and run `ext install webfreak.debug` in visual studio code and install GDB/LLDB. See `Usage` for details on how to set it up.
+For the moment, we need to install it using the off-side loading.
 
-![Preview](images/preview.png)
+First, you need to build and export the plugin into a ".vsix" file.
+
+```bash
+vsce package
+```
+
+Then, to install the plugin, open the Extension panel (Ctrl + Shift +X ), click on the three dot button, and select `Install from VSIX`, then pick the exported file in step 1.
+You might need to reload your VSCode.
 
 ## Usage
 
@@ -20,7 +29,7 @@ Open your project and click the debug button in your sidebar. At the top right p
 the little gear icon and select GDB or LLDB. It will automatically generate the configuration
 you need.
 
-*Note: for LLDB you need to have `lldb-mi` in your PATH*
+_Note: for LLDB you need to have `lldb-mi` in your PATH_
 
 If you are on OS X you can add `lldb-mi` to your path using
 `ln -s /Applications/Xcode.app/Contents/Developer/usr/bin/lldb-mi /usr/local/bin/lldb-mi` if you have Xcode.
@@ -119,4 +128,4 @@ Because some builds requires one or more environment files to be sourced before 
 command, you can use the `ssh.bootstrap` option to add some extra commands which will be prepended
 to the debugger call (using `&&` to join both).
 
-## [Issues](https://github.com/WebFreak001/code-debug)
+## [Issues](https://github.com/ductrung-nguyen/code-debug)
