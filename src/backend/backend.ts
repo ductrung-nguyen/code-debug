@@ -46,6 +46,12 @@ export interface SSHArguments {
 	x11port: number;
 	x11host: string;
 	bootstrap: string;
+	proxyPort: number;
+	proxyHost: string;
+	proxyUser: string;
+	proxyPassword: string;
+	proxyKeyfile: string;
+	proxyUseAgent: boolean;
 }
 
 export interface IBackend {

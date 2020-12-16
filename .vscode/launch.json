@@ -1,50 +1,105 @@
 // A launch configuration that compiles the extension and then opens it inside a new window
 {
-	"version": "0.1.0",
-	"configurations": [
-		{
-			"name": "Launch Extension",
-			"type": "extensionHost",
-			"request": "launch",
-			"runtimeExecutable": "${execPath}",
-			"args": ["--extensionDevelopmentPath=${workspaceRoot}" ],
-			"stopOnEntry": false,
-			"sourceMaps": true,
-			"outFiles": [
-				"${workspaceRoot}/out/**/*.js"
-			],
-			"preLaunchTask": "npm"
-		},
-		{
-			"name": "code-debug server",
-			"type": "node",
-			"request": "launch",
-			"runtimeArgs": [ "--nolazy" ],
-			"program": "${workspaceRoot}/src/gdb.ts",
-			"stopOnEntry": false,
-			"args": [ "--server=4711" ],
-			"sourceMaps": true,
-			"outFiles": [
-				"${workspaceRoot}/out/**/*.js"
-			],
-			"cwd": "${workspaceRoot}",
-			"preLaunchTask": "npm"
-		},
-		{
-			"name": "Launch Tests",
-			"type": "extensionHost",
-			"request": "launch",
-			"runtimeExecutable": "${execPath}",
-			"args": [
-				"--extensionDevelopmentPath=${workspaceRoot}",
-				"--extensionTestsPath=${workspaceRoot}/out/src/test/suite/index"
-			],
-			"stopOnEntry": false,
-			"sourceMaps": true,
-			"outFiles": [
-				"${workspaceRoot}/out/**/*.js"
-			],
-			"preLaunchTask": "npm"
-		}
-	]
+  "version": "0.1.0",
+  "configurations": [
+    {
+      "name": "Launch Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceRoot}"
+      ],
+      "stopOnEntry": false,
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceRoot}/out/**/*.js"
+      ],
+      "preLaunchTask": "npm"
+    },
+    {
+      "name": "code-debug server",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "program": "${workspaceRoot}/src/gdb.ts",
+      "stopOnEntry": false,
+      "args": [
+        "--server=4711"
+      ],
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceRoot}/out/**/*.js"
+      ],
+      "cwd": "${workspaceRoot}",
+      "preLaunchTask": "npm"
+    },
+    {
+      "name": "Launch Tests",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceRoot}",
+        "--extensionTestsPath=${workspaceRoot}/out/src/test/suite/index"
+      ],
+      "stopOnEntry": false,
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceRoot}/out/**/*.js"
+      ],
+      "preLaunchTask": "npm"
+    },
+    {
+      "name": "(gdb) Remote Attach 2",
+      "type": "gdb",
+      "request": "attach",
+      "executable": "/remote/users/nguyend/UnixEdiDebug",
+      "target": ":15151",
+      "remote": true,
+      "cwd": "${workspaceFolder}",
+      "autorun": [
+        "set sysroot /",
+        "handle all print nostop noignore",
+        "set print pretty on",
+        "set pagination off",
+        "set history save on"
+      ],
+      "debugger_args": [
+        "-ex 'handle all print nostop noignore'",
+        "-ex 'set sysroot /'",
+        "-ex 'target remote :15151'",
+        "-ex 'set print pretty on'",
+        "-ex 'set pagination off'",
+        "-ex 'set history save on'"
+      ],
+      "showDevDebugOutput": false,
+      // "ssh": {
+      //   "forwardX11": false,
+      //   "useAgent": false,
+      //   "cwd": "/remote/users/nguyend/",
+      //   // "host": "172.17.202.28", // TBP
+      //   "host": "172.17.234.58", // QP7
+      //   // "host": "203.113.172.161", // my server
+      //   "keyfile": "/home/nguyend/.ssh/id_rsa",
+      //   "user": "pdnguyen",
+      //   // "host": "172.16.141.71", // TBP
+      //   // "keyfile": "/home/nguyend/.ssh/id_rsa",
+      //   // "user": "nguyend",
+      //   "x11host": "localhost",
+      //   "x11port": 6000,
+      //   // Optional, content will be executed on the SSH host before the debugger call.
+      //   // "bootstrap": "sourcing /farequote/*/SetConfig",
+      //   // "proxyHost": "172.16.141.71", // DEV
+      //   // "proxyPort": 22,
+      //   // "proxyUser": "nguyend",
+      //   // "proxyKeyfile": "/home/nguyend/.ssh/id_rsa",
+      //   // "proxyUseAgent": false
+      // }
+      // "gdbpath": "gdb  -ex 'handle all print nostop noignore' -ex 'set sysroot /' -ex 'target remote :15151' -ex 'set print pretty on' -ex 'set pagination off' -ex 'set history save on'"
+      // "debugger_args": []
+    }
+  ]
 }
